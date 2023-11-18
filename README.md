@@ -72,6 +72,9 @@ Backend: Node.js, Express.js, PostgreSQL
      <img src= 'https://github.com/fzinnah17/CodeFM/blob/main/GIFs/Unique%20URL.gif' title= 'Video Walkthrough' width='700px'>
      
 - ✅  8. **Frontend Redirection**: After submitting a new post, redirect the user back to the list of posts or to their newly created post.
+
+  <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/redirect.gif' title= 'Video Walkthrough' width='700px'>
+  
 - ✅ 9. **On-page interactions**: Users can create or edit a post on the same page without navigating to a new page.
   <img src= 'https://github.com/fzinnah17/CodeFM/blob/main/GIFs/CRUD_Frontend.gif' title='Video Walkthrough'>
   
