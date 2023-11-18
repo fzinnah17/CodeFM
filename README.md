@@ -4,7 +4,7 @@ Designed and developed by: Myesha Mahazabeen & Farnaz Zinnah
 
 🔗 Link to deployed app: https://codefm-client-production.up.railway.app/
 
-<img src= 'https://github.com/fzinnah17/CodeFM/tree/main/GIFs' title='Video Walkthrough of Final GIF'>
+<img src= 'https://github.com/fzinnah17/CodeFM/blob/main/GIFs/CodeFM-final-GIF.gif' title='Video Walkthrough of Final GIF'>
 
 ## About
 
