@@ -95,7 +95,7 @@ Backend: Node.js, Express.js, PostgreSQL
   
 - ✅ 2. **Filtering**: Users could have the option to filter resources based on platforms or categories like "YouTube", "Leetcode", or "Articles".
 
-  
+  <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/filter.gif' title='Video Walkthrough' width='700px'>
 
 ###
 ###
