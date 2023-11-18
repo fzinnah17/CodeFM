@@ -4,6 +4,8 @@ Designed and developed by: Myesha Mahazabeen & Farnaz Zinnah
 
 🔗 Link to deployed app: https://codefm-client-production.up.railway.app/
 
+<img src= 'https://github.com/fzinnah17/CodeFM/tree/main/GIFs' title='Video Walkthrough of Final GIF'>
+
 ## About
 
 CodeFM is a React based web app that provides vibrant online community for budding coders and tech enthusiasts. Our platform offers a supportive environment where users can access resources, connect with peers, and embark on their coding journey with confidence
