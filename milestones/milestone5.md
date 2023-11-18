@@ -71,7 +71,7 @@ Complete the checklist below detailing each baseline, custom, and stretch featur
 
 ## Final Demo GIF
 
-🔗 [Here's a GIF walkthrough of the final project](👉🏾👉🏾👉🏾 https://github.com/fzinnah17/CodeFM/tree/main/GIFs)
+🔗 [Here's a GIF walkthrough of the final project](👉🏾👉🏾👉🏾 <img src= 'https://github.com/fzinnah17/CodeFM/blob/main/GIFs/CodeFM-final-GIF.gif' title='Video Walkthrough of Final GIF'>)
 
 ## Reflection
 
