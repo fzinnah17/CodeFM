@@ -90,10 +90,12 @@ Backend: Node.js, Express.js, PostgreSQL
 ### Custom Features:
 
 - ✅ 1. **Data Validation**: Validate any POST or PATCH requests to ensure that users aren't submitting empty or inappropriate content.
+
+  <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/validation.gif' title='Video Walkthrough' width='700px'>
   
 - ✅ 2. **Filtering**: Users could have the option to filter resources based on platforms or categories like "YouTube", "Leetcode", or "Articles".
 
-  <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/validation.gif' title='Video Walkthrough' width='700px'>
+  
 
 ###
 ###
