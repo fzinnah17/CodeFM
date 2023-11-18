@@ -48,6 +48,9 @@ Backend: Node.js, Express.js, PostgreSQL
   <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/ExpressbackendandReactFrontend.gif' title='Video Walkthrough' width='700px' alt='Express React' />
 
 - ✅ 2. **Dynamic Routes**: The discussion board would have dynamic routes for individual posts or discussions. For example, `/posts/:postId`.
+
+  <img src= 'https://github.com/fzinnah17/CodeFM/blob/main/GIFs/postid.gif' itle='Video Walkthrough' width='700px'>
+  
 - ✅ 3. **Deployment on Railway**: Railway for deployment.
       <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/Railway%20Backend.gif' title='Video Walkthrough' width='700px' alt='Railway' />
 
@@ -81,9 +84,8 @@ Backend: Node.js, Express.js, PostgreSQL
   
 - ✅ 10. **Dynamic frontend routes with React Router**: Using React Router, you can create dynamic routes like `/posts/:postId` to view a specific post's details.
 
-  <img src= 'https://github.com/fzinnah17/CodeFM/blob/main/GIFs/postid.gif' itle='Video Walkthrough' width='700px'>
-
   <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/dynamic.gif' title='Video Walkthrough' width='700px'>
+  
 - ✅  11. **Hierarchical React components**: Break down frontend components methodically:
    - ✅  **Page components**: `Home`, `DiscussionBoard`, `ResourceList`.
    - ✅  **Presenter components**: `Post`, `Comment`, `ResourceItem`.
