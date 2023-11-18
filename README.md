@@ -76,9 +76,11 @@ Backend: Node.js, Express.js, PostgreSQL
   <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/redirect.gif' title= 'Video Walkthrough' width='700px'>
   
 - ✅ 9. **On-page interactions**: Users can create or edit a post on the same page without navigating to a new page.
-  <img src= 'https://github.com/fzinnah17/CodeFM/blob/main/GIFs/CRUD_Frontend.gif' title='Video Walkthrough'>
+  <img src= 'https://github.com/fzinnah17/CodeFM/blob/main/GIFs/CRUD_Frontend.gif' title='Video Walkthrough' width='700px'>
   
 - ✅ 10. **Dynamic frontend routes with React Router**: Using React Router, you can create dynamic routes like `/posts/:postId` to view a specific post's details.
+
+  <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/dynamic.gif' title='Video Walkthrough' width='700px'>
 - ✅  11. **Hierarchical React components**: Break down frontend components methodically:
    - ✅  **Page components**: `Home`, `DiscussionBoard`, `ResourceList`.
    - ✅  **Presenter components**: `Post`, `Comment`, `ResourceItem`.
