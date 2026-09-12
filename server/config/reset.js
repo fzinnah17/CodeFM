@@ -1,13 +1,11 @@
 import { pool } from './database.js';
-//import { mockData } from '../data/mockData.js';
 
 const createUserTable = `
 CREATE TABLE IF NOT EXISTS "GITHUBUSER" (
   id SERIAL PRIMARY KEY,
-  username text UNIQUE NOT NULL,
-  avatarurl text,
-  githubid text UNIQUE,
-  accesstoken text
+  username TEXT UNIQUE NOT NULL,
+  avatarurl TEXT,
+  githubid TEXT UNIQUE
 );
 `;
 
@@ -55,19 +53,30 @@ CREATE TABLE IF NOT EXISTS "USER_RESOURCE" (
 const createTables = async () => {
   try {
     await pool.query(createUserTable);
-    console.log('🎉 GITHUBUSER table created successfully');
-    await pool.query(createPostTable);
-    console.log('🎉 POST table created successfully');
-    await pool.query(createCommentTable);
-    console.log('🎉 COMMENT table created successfully');
-    await pool.query(createTypeTable);
-    console.log('🎉 TYPE table created successfully');
-    await pool.query(createResourceTable);
-    console.log('🎉 RESOURCE table created successfully');
-    await pool.query(createUserResourceTable);
-    console.log('🎉 USER_RESOURCE table created successfully');
 
-  } catch (err) {
-    console.error('⚠️ Error creating tables:', err);
+    // Older versions of CodeFM stored GitHub OAuth
+    // access tokens. They are no longer needed.
+    await pool.query(
+      'ALTER TABLE "GITHUBUSER" DROP COLUMN IF EXISTS accesstoken'
+    );
+
+    await pool.query(createPostTable);
+    await pool.query(createCommentTable);
+    await pool.query(createTypeTable);
+    await pool.query(createResourceTable);
+    await pool.query(createUserResourceTable);
+
+    console.log('Database schema ready.');
+  } catch (error) {
+    console.error(
+      'Unable to initialize database schema:',
+      error.message
+    );
+
+    process.exitCode = 1;
+  } finally {
+    await pool.end();
   }
 };
+
+createTables();

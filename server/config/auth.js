@@ -2,54 +2,84 @@ import { pool } from './database.js';
 import GithubStrategy from 'passport-github2';
 import passport from 'passport';
 
-const options = {
-  clientID: process.env.GITHUB_CLIENT_ID,
-  clientSecret: process.env.GITHUB_CLIENT_SECRET,
-  // callbackURL: process.env.GITHUB_CALLBACK_URL,
-  // callbackURL: process.env.NODE_ENV === 'production'
-  //   ? process.env.GITHUB_CALLBACK_URL
-  //   : 'http://localhost:3001/auth/github/callback',
-  callbackURL: process.env.NODE_ENV === 'production'
-    ? 'https://codefm-server-production.up.railway.app/auth/github/callback'
-    : process.env.GITHUB_CALLBACK_URL,
-};
+const requireEnv = (name) => {
+  const value = process.env[name];
 
-const verify = async (accessToken, refreshToken, profile, callback) => {
-  console.log('Access Token:', accessToken);
-  console.log('Profile:', profile);
-  const { id, login, avatar_url } = profile._json;
-  
-
-  if (!login) {
-    return callback(new Error('Username is required'), null);
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`);
   }
 
-  const userData = {
-    githubId: id,
-    username: login,
-    avatarUrl: avatar_url,
-    accessToken,
-  };
+  return value;
+};
+
+const options = {
+  clientID: requireEnv('GITHUB_CLIENT_ID'),
+  clientSecret: requireEnv('GITHUB_CLIENT_SECRET'),
+  callbackURL:
+    process.env.GITHUB_CALLBACK_URL ||
+    'http://localhost:3001/auth/github/callback',
+};
+
+const verify = async (
+  _accessToken,
+  _refreshToken,
+  profile,
+  callback
+) => {
+  const { id, login, avatar_url } = profile._json;
+
+  if (!login) {
+    return callback(
+      new Error('GitHub username is required'),
+      null
+    );
+  }
 
   try {
-    const results = await pool.query('SELECT * FROM GITHUBUSER WHERE username = $1', [userData.username]);
+    const existingUser = await pool.query(
+      `
+      SELECT id, username, avatarurl, githubid
+      FROM "GITHUBUSER"
+      WHERE username = $1
+      `,
+      [login]
+    );
 
-    if (results.rows.length === 0) {
-      // Changed to fetch the entire user row
-      const insertResult = await pool.query(
-        'INSERT INTO GITHUBUSER (githubid, username, avatarurl, accesstoken) VALUES ($1, $2, $3, $4) RETURNING *',
-        [userData.githubId, userData.username, userData.avatarUrl, accessToken],
+    if (existingUser.rows.length > 0) {
+      const updatedUser = await pool.query(
+        `
+        UPDATE "GITHUBUSER"
+        SET githubid = $1,
+            avatarurl = $2
+        WHERE username = $3
+        RETURNING id, username, avatarurl, githubid
+        `,
+        [id, avatar_url, login]
       );
-      return callback(null, insertResult.rows[0]); // Return the full user object
+
+      return callback(null, updatedUser.rows[0]);
     }
 
-    return callback(null, results.rows[0]); // Return the full user object
+    const insertedUser = await pool.query(
+      `
+      INSERT INTO "GITHUBUSER"
+        (githubid, username, avatarurl)
+      VALUES
+        ($1, $2, $3)
+      RETURNING id, username, avatarurl, githubid
+      `,
+      [id, login, avatar_url]
+    );
+
+    return callback(null, insertedUser.rows[0]);
   } catch (error) {
     return callback(error);
   }
-  console.log("User authenticated:", userData);
 };
 
-export const GitHub = new GithubStrategy(options, verify);
+export const GitHub = new GithubStrategy(
+  options,
+  verify
+);
 
 export default passport;
