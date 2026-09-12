@@ -1,182 +1,328 @@
 # CodeFM
 
-Designed and developed by: Myesha Mahazabeen & Farnaz Zinnah
+> A full-stack community platform for early-career developers to discuss technical topics, share learning resources, and discover opportunities.
 
-🔗 Link to deployed app: https://codefm-client-production.up.railway.app/
+**React · Express · PostgreSQL · GitHub OAuth · REST API**
 
-<img src= 'https://github.com/fzinnah17/CodeFM/blob/main/GIFs/CodeFM-final-GIF.gif' title='Video Walkthrough of Final GIF'>
+Developed by **Myesha Mahazabeen** and **Farnaz Zinnah**.
 
-## About
+---
 
-CodeFM is a React based web app that provides vibrant online community for budding coders and tech enthusiasts. Our platform offers a supportive environment where users can access resources, connect with peers, and embark on their coding journey with confidence
+## System Snapshot
 
-### Description and Purpose
+```text
+┌──────────────────────────── CLIENT ────────────────────────────┐
+│                                                               │
+│   React + Vite                                                │
+│                                                               │
+│   Home ──► GitHub Login                                       │
+│              │                                                │
+│              ▼                                                │
+│   Protected Application Routes                                │
+│      ├── Discussion Board                                     │
+│      ├── Resources                                            │
+│      ├── Events                                               │
+│      ├── Create Post                                          │
+│      └── Post Detail                                          │
+│                                                               │
+└──────────────────────────────┬────────────────────────────────┘
+                               │
+                         REST / OAuth
+                               │
+                               ▼
+┌──────────────────────────── SERVER ────────────────────────────┐
+│                                                               │
+│   Express                                                     │
+│      ├── GitHub OAuth / Passport                              │
+│      ├── Session Authentication                               │
+│      ├── Posts API                                            │
+│      ├── Comments API                                         │
+│      ├── Resources API                                        │
+│      ├── Resource Types API                                   │
+│      └── Users API                                            │
+│                                                               │
+└──────────────────────────────┬────────────────────────────────┘
+                               │
+                               ▼
+┌────────────────────────── POSTGRESQL ──────────────────────────┐
+│                                                               │
+│   Users · Posts · Comments · Resources · Types                │
+│   User ↔ Resource relationship                                │
+│                                                               │
+└───────────────────────────────────────────────────────────────┘
+```
 
-- Users can sign up/ log in
-- Users can create, read, update and delete posts, comment and react on others post (CRUD operations, One to Many)
-- Users can access learning resorces posted by others and can add his/her findings as well
-- Users can develop coding or other CS related skills based on preferences (beginner friendly)
-- Can build strong network with like minded peers
-- Newbeies can get guidance from experts and can learn coding from existing resources
-- Users can get insightful information about upcoming events/career fair across the country
-- Personalized learning environment
-  
+---
 
-### Inspiration
+## What CodeFM Does
 
-- Codecademy
-- GitHub
-- CodePath
+CodeFM was built as a community-oriented platform for students and early-career technologists.
 
-## Tech Stack
+The application combines authentication, relational data, REST APIs, and a multi-page React interface in a single full-stack system.
 
-Frontend: React JavaScript
+### Discussion Board
 
-Backend: Node.js, Express.js, PostgreSQL
+Authenticated users can browse posts, create new discussions, edit existing posts, open individual post views, and delete posts.
 
+### Resource Library
 
-## Features
+Learning resources are retrieved from the backend and organized by category. The data model also supports relationships between users and shared resources.
 
-1. **Target Audience**: Focus on college computer science freshmen and sophomores.
-2. **Personalized Learning**: Users can access resources from platforms like YouTube, Leetcode, and FreeCodeCamp.
-3. **Connect with Peers**: Users can engage on discussion boards with CRUD operations.
+### Authentication
 
-### Baseline Features:
+GitHub OAuth is handled through Passport on the Express server.
 
-- ✅ 1. **Express backend and React frontend**: Express for the CRUD operations on the discussion boards and React to display content and allow user interactions.
-  
-  <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/ExpressbackendandReactFrontend.gif' title='Video Walkthrough' width='700px' alt='Express React' />
+Application routes such as the discussion board, resources, events, and creation flows are protected on the client.
 
-- ✅ 2. **Dynamic Routes**: The discussion board would have dynamic routes for individual posts or discussions. For example, `/posts/:postId`.
+### Events
 
-  <img src= 'https://github.com/fzinnah17/CodeFM/blob/main/GIFs/postid.gif' itle='Video Walkthrough' width='700px'>
-  
-- ✅ 3. **Deployment on Railway**: Railway for deployment.
-      <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/Railway%20Backend.gif' title='Video Walkthrough' width='700px' alt='Railway' />
+The authenticated application includes an events area intended to surface technical and career-development opportunities alongside the community and learning features.
 
-- ✅ 4. **One-to-many database relationship**: Connection between users and their posts on the discussion board. One user can have multiple posts.
+---
 
-   <img src= 'https://github.com/fzinnah17/CodeFM/blob/main/GIFs/OnetoMany.gif' title='Video Walkthrough' width='700px'>
-   
-- ✅ 5. **Many-to-many with a join table**: Users can share multiple resources, and a single resource (like a YouTube tutorial). This requires a join table.
+## Application Walkthrough
 
-    <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/ManytoMany.gif' title='Video Walkthrough' width='700px'>
-- ✅ 6. **RESTful API**:
-   - **GET**: Fetch a list of posts or resources.
-   - **POST**: Create a new post on the discussion board.
-   - **PATCH**: Edit an existing post.
-   - **DELETE**: Remove a post.    
-     <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/CRUD_Backend.gif' title= 'Video Walkthrough' width='700px'>
-- ✅  7. **Proper naming conventions for routes**: For instance:
-   - GET: `/api/posts/` to get all posts.
-   - POST: `/api/posts/` to create a new post.
-   - PATCH: `/api/posts/:postId` to edit a specific post.
-   - DELETE: `/api/posts/:postId` to delete a specific post.
- 
-     <img src= 'https://github.com/fzinnah17/CodeFM/blob/main/GIFs/Unique%20URL.gif' title= 'Video Walkthrough' width='700px'>
-     
-- ✅  8. **Frontend Redirection**: After submitting a new post, redirect the user back to the list of posts or to their newly created post.
+<p align="center">
+  <img
+    src="GIFs/CodeFM-final-GIF.gif"
+    alt="CodeFM application walkthrough"
+    width="800"
+  />
+</p>
 
-  <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/redirect.gif' title= 'Video Walkthrough' width='700px'>
-  
-- ✅ 9. **On-page interactions**: Users can create or edit a post on the same page without navigating to a new page.
-  <img src= 'https://github.com/fzinnah17/CodeFM/blob/main/GIFs/CRUD_Frontend.gif' title='Video Walkthrough' width='700px'>
-  
-- ✅ 10. **Dynamic frontend routes with React Router**: Using React Router, you can create dynamic routes like `/posts/:postId` to view a specific post's details.
+---
 
-  <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/dynamic.gif' title='Video Walkthrough' width='700px'>
-  
-- ✅  11. **Hierarchical React components**: Break down frontend components methodically:
-   - ✅  **Page components**: `Home`, `DiscussionBoard`, `ResourceList`.
-   - ✅  **Presenter components**: `Post`, `Comment`, `ResourceItem`.
-   - ✅  **Container components**: `PostContainer`, `ResourceContainer` (handles logic).
+## Architecture
 
+```mermaid
+flowchart LR
+    U[User] --> R[React Client]
 
-### Custom Features:
+    R -->|GitHub Login| O[GitHub OAuth]
+    R -->|HTTP Requests| E[Express API]
 
-- ✅ 1. **Data Validation**: Validate any POST or PATCH requests to ensure that users aren't submitting empty or inappropriate content.
+    O --> P[Passport]
+    P --> E
 
-  <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/validation.gif' title='Video Walkthrough' width='700px'>
-  
-- ✅ 2. **Filtering**: Users could have the option to filter resources based on platforms or categories like "YouTube", "Leetcode", or "Articles".
+    E --> A[Authentication]
+    E --> POSTS[Posts]
+    E --> COMMENTS[Comments]
+    E --> RES[Resources]
+    E --> USERS[Users]
 
-  <img src='https://github.com/fzinnah17/CodeFM/blob/main/GIFs/filter.gif' title='Video Walkthrough' width='700px'>
+    A --> DB[(PostgreSQL)]
+    POSTS --> DB
+    COMMENTS --> DB
+    RES --> DB
+    USERS --> DB
+```
 
-###
-###
-###
-###
+### Frontend
 
-## Features to be implemented in the future
+The client is built with React and Vite and uses React Router for navigation.
 
-### Target Audience
-- **Focused Learning**: The app is specifically designed for college computer science freshman and sophomore students, ensuring content and resources are tailored to their needs.
+```text
+client/
+├── src/
+│   ├── components/
+│   ├── contexts/
+│   ├── pages/
+│   ├── services/
+│   └── css/
+├── package.json
+└── vite.config.mjs
+```
 
-### Personalized Learning
-- **Skill Development**: Users can practice/learn coding with various resources from platforms like YouTube, Leetcode, FreeCodeCamp, etc., in different programming languages to improve technical skills and understanding.
-  
-### Connect with Peers
-- **Engagement**: Users can join discussions and ask questions in a welcoming community of fellow learners and mentors.
-- **Discussion Boards**: Full CRUD operations where users can create, read, update, and delete their posts. They can also comment and react to posts made by others, fostering a community-driven learning environment.
+Application state is separated into authentication and API-context layers, while server communication is organized through service modules.
 
-### Progress Tracking
-- **Journey Monitoring**: Users can easily monitor their learning journey and see how their learning/engaging skills grow over time.
-- **Achievements**: Users earn badges as they progress, providing visual feedback and motivation.
+### Backend
 
-### Network Building
-- **Networking**: Users can connect with like-minded peers, laying the foundation for future collaborations or study groups.
-- **Guidance**: Newbies have the opportunity to seek guidance from senior students and alumni, bridging the knowledge gap.
+The server uses Express with PostgreSQL-backed application data.
 
-### Resource Sharing
-- **Resource Hub**: A dedicated section where users can access resources shared by the community. Users can both consume and add resources, establishing a many-to-many relationship in the database for shared resources.
+```text
+server/
+├── config/
+│   ├── auth.js
+│   ├── database.js
+│   ├── dotenv.js
+│   └── reset.js
+├── controllers/
+├── routes/
+├── data/
+├── server.js
+└── package.json
+```
 
-### Career Insights
-- **Events & Opportunities**: Users can get information about upcoming events, career fairs, free courses like CodePath, and internships such as Break Through Tech, ensuring they don't miss out on valuable opportunities.
+Routes and controllers separate HTTP handling from database operations.
 
-  
-### Technical Features (Baseline Features)
+---
 
-- **Integration**:
-  - **Express Backend**: The app uses an Express backend to handle server-side operations.
-  - **React Frontend**: A responsive frontend built with React for an interactive user experience.
+## Data Model
 
-- **Dynamic Routes**: The application includes dynamic routing capabilities for both the frontend and backend, ensuring a seamless user journey.
+<p align="center">
+  <img
+    src="ERD/CodeFM%20Ultra-2023-10-29-162922.png"
+    alt="CodeFM entity relationship diagram"
+    width="800"
+  />
+</p>
 
-- **Deployment**: The web application is deployed on Railway with all pages and features fully operational.
+The PostgreSQL schema includes:
 
-- **Database Relationships**: 
-  - **One-to-Many**: The app showcases a one-to-many relationship, evident in the interaction between users and their multiple posts.
-  - **Many-to-Many with a Join Table**: [Feature/Implementation details to be added when developed]
+| Entity | Purpose |
+|---|---|
+| `GITHUBUSER` | Authenticated GitHub users |
+| `POST` | Discussion-board posts |
+| `COMMENT` | Comments associated with posts |
+| `TYPE` | Resource categories |
+| `RESOURCE` | Learning resources |
+| `USER_RESOURCE` | User-to-resource relationship |
 
-- **RESTful API**: Our backend features a robust API:
-  - **Request Types**: Supports GET (read), POST (create), PATCH (update), and DELETE (remove) requests.
-  - **Route Naming**: Proper naming conventions have been followed to maintain clarity and consistency.
+The `USER_RESOURCE` table provides the relational layer needed for resources to be associated with multiple users.
 
-- **Database Reset**: The app offers the functionality to reset the database to its default state, aiding in debugging and maintenance.
+---
 
-- **User Experience**:
-  - **Redirection**: Seamless redirections are implemented in several user flows for enhanced navigation.
-  - **On-Page Interactions**: Features such as creating posts are done without needing to reload or navigate away, enhancing user experience.
-  
-- **Frontend Routing**: Dynamic frontend routes are crafted using React Router, ensuring appropriate component rendering based on URLs.
+## API Surface
 
-- **Hierarchical React Components**:
-  - **Component Categorization**: The frontend's React components are organized methodically into specific categories, facilitating better code understanding and maintenance.
-  - **Component Types**: The app incorporates both container components (handling logic) and presenter components (handling UI), ensuring a clear separation of concerns.
+The Express server organizes functionality into dedicated route groups:
 
+```text
+/auth
+/api/users
+/api/posts
+/api/comments
+/api/resources
+/api/types
+```
 
-### Custom Features
+This separation keeps authentication, discussion content, resource management, and user data independently addressable.
 
-- **Filtering and Sorting**:
-  - **Role-based Resources**: The application provides filtering options tailored to specific roles in the tech industry. Whether a user is interested in software engineering, product management, or UX design, the resources and discussions can be filtered or sorted to cater to their specific needs.
+---
 
-- **Data Validation**:
-  - **Secure Submissions**: Before any data is updated in our database through POST or PATCH requests, the input is validated. For instance:
-    - When a user is discussing topics related to "MCAT" or "Medical School", the system checks for content relevance.
-    - An if-statement ensures that posts have proper categorization. If a user tries to submit without selecting a category, an error is thrown, ensuring that all posts are properly categorized and easily retrievable.
+## Security Maintenance
 
+The project was revisited and hardened after its original development.
 
-## Installation Instructions
+Current safeguards include:
 
-Login on website
+- secrets and database credentials loaded from environment variables
+- `.env` excluded from version control
+- configurable session secret
+- PostgreSQL-backed session storage
+- GitHub OAuth tokens are not persisted in the application database
+- authentication secrets and OAuth tokens are not written to application logs
+- public user responses exclude authentication credentials
+- current client and server dependency audits report no known vulnerabilities
 
+An `.env.example` file documents the required configuration without exposing credentials.
+
+---
+
+## Local Development
+
+### 1. Clone
+
+```bash
+git clone https://github.com/fzinnah17/CodeFM.git
+cd CodeFM
+```
+
+### 2. Configure environment variables
+
+```bash
+cp .env.example .env
+```
+
+Provide your own PostgreSQL and GitHub OAuth configuration:
+
+```env
+DATABASE_URL=postgresql://USER:PASSWORD@HOST:5432/DATABASE
+
+GITHUB_CLIENT_ID=your_github_oauth_client_id
+GITHUB_CLIENT_SECRET=your_github_oauth_client_secret
+GITHUB_CALLBACK_URL=http://localhost:3001/auth/github/callback
+
+SESSION_SECRET=replace_with_a_long_random_value
+
+CLIENT_URL=http://localhost:5173
+NODE_ENV=development
+PORT=3001
+```
+
+Do not commit `.env`.
+
+### 3. Install the server
+
+```bash
+cd server
+npm install
+npm run reset
+npm run dev
+```
+
+The API runs on:
+
+```text
+http://localhost:3001
+```
+
+### 4. Start the client
+
+In another terminal:
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+The client runs on:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## Technology
+
+| Layer | Technology |
+|---|---|
+| Frontend | React, Vite |
+| Routing | React Router |
+| HTTP | Axios |
+| Backend | Node.js, Express |
+| Database | PostgreSQL |
+| Authentication | GitHub OAuth, Passport |
+| Sessions | express-session, connect-pg-simple |
+| API style | REST |
+
+---
+
+## Project Context
+
+CodeFM originated as a collaborative full-stack project and was later preserved as a standalone repository.
+
+The current repository keeps the original development history and team attribution while updating authentication practices, dependency security, configuration handling, and project documentation.
+
+---
+
+## Contributors
+
+**Myesha Mahazabeen**  
+**Farnaz Zinnah**
+
+Original application design and development were completed collaboratively.
+
+---
+
+## Repository Status
+
+```text
+STATUS        maintained portfolio project
+FRONTEND      React / Vite
+BACKEND       Express
+DATABASE      PostgreSQL
+AUTH          GitHub OAuth
+SECURITY      dependency audits clean
+```
