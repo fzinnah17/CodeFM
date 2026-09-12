@@ -309,8 +309,7 @@ The current repository keeps the original development history and team attributi
 
 ## Contributors
 
-**Myesha Mahazabeen**
-
+**Myesha Mahazabeen**  
 **Farnaz Zinnah**
 
 Original application design and development were completed collaboratively.
